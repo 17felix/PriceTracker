@@ -454,6 +454,66 @@
         ]
       }
     },
+    "/api/TodoLists/pdf": {
+      "get": {
+        "tags": [
+          "TodoLists"
+        ],
+        "operationId": "TodoLists_GetPdf",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-position": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
+    "/api/DocumentGeneration": {
+      "get": {
+        "tags": [
+          "DocumentGeneration"
+        ],
+        "operationId": "DocumentGeneration_Get",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/WeatherForecast": {
       "get": {
         "tags": [
