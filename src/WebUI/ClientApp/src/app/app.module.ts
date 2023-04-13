@@ -17,6 +17,16 @@ import { TokenComponent } from './token/token.component';
 import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.module';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InflationTrackerComponent } from './tracker/inflation-tracker/inflation-tracker.component';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { en_US } from 'ng-zorro-antd/i18n';
+import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
+import { IconsProviderModule } from './icons-provider.module';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+
+registerLocaleData(en);
 
 @NgModule({
   declarations: [
@@ -25,6 +35,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
+    InflationTrackerComponent,
     TodoComponent,
     TokenComponent
   ],
@@ -35,10 +46,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ApiAuthorizationModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    IconsProviderModule,
+    NzLayoutModule,
+    NzMenuModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
+    { provide: NZ_I18N, useValue: en_US }
   ],
   bootstrap: [AppComponent]
 })
