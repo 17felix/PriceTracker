@@ -4,12 +4,12 @@ using MediatR;
 
 namespace CleanArchitecture.Application.TodoLists.Commands.CreateTodoList;
 
-public record CreateTodoListCommand : IRequest<int>
+public record CreateTodoListCommand : IRequest<long>
 {
     public string? Title { get; init; }
 }
 
-public class CreateTodoListCommandHandler : IRequestHandler<CreateTodoListCommand, int>
+public class CreateTodoListCommandHandler : IRequestHandler<CreateTodoListCommand, long>
 {
     private readonly IApplicationDbContext _context;
 
@@ -18,7 +18,7 @@ public class CreateTodoListCommandHandler : IRequestHandler<CreateTodoListComman
         _context = context;
     }
 
-    public async Task<int> Handle(CreateTodoListCommand request, CancellationToken cancellationToken)
+    public async Task<long> Handle(CreateTodoListCommand request, CancellationToken cancellationToken)
     {
         var entity = new TodoList();
 

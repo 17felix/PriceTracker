@@ -2,9 +2,9 @@
 
 namespace CleanArchitecture.Domain.Common;
 
-public abstract class BaseEntity
+public abstract class BaseEntity : IIdentifiable<long>
 {
-    public int Id { get; set; }
+    public long Id { get; set; }
 
     private readonly List<BaseEvent> _domainEvents = new();
 

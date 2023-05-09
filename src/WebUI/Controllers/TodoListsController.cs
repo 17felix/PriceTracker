@@ -2,6 +2,7 @@
 using CleanArchitecture.Application.TodoLists.Commands.DeleteTodoList;
 using CleanArchitecture.Application.TodoLists.Commands.UpdateTodoList;
 using CleanArchitecture.Application.TodoLists.Queries.ExportTodos;
+using CleanArchitecture.Application.TodoLists.Queries.ExportTodosPdf;
 using CleanArchitecture.Application.TodoLists.Queries.GetTodos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -25,8 +26,17 @@ public class TodoListsController : ApiControllerBase
         return File(vm.Content, vm.ContentType, vm.FileName);
     }
 
+
+    /*[HttpGet("pdf")]
+    public async Task<IActionResult> GetPdf(int id)
+    {
+        /*await Mediator.Send(new ExportTodosPdfQuery { ListId = id });
+
+        return NoContent();#1#
+    }*/
+
     [HttpPost]
-    public async Task<ActionResult<int>> Create(CreateTodoListCommand command)
+    public async Task<ActionResult<long>> Create(CreateTodoListCommand command)
     {
         return await Mediator.Send(command);
     }
@@ -35,7 +45,7 @@ public class TodoListsController : ApiControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesDefaultResponseType]
-    public async Task<IActionResult> Update(int id, UpdateTodoListCommand command)
+    public async Task<IActionResult> Update(long id, UpdateTodoListCommand command)
     {
         if (id != command.Id)
         {
@@ -50,7 +60,7 @@ public class TodoListsController : ApiControllerBase
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesDefaultResponseType]
-    public async Task<IActionResult> Delete(int id)
+    public async Task<IActionResult> Delete(long id)
     {
         await Mediator.Send(new DeleteTodoListCommand(id));
 

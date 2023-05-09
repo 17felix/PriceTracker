@@ -17,10 +17,11 @@ public class TodoItemsController : ApiControllerBase
     public async Task<ActionResult<PaginatedList<TodoItemBriefDto>>> GetTodoItemsWithPagination([FromQuery] GetTodoItemsWithPaginationQuery query)
     {
         return await Mediator.Send(query);
+        // mediatr get query in action?
     }
 
     [HttpPost]
-    public async Task<ActionResult<int>> Create(CreateTodoItemCommand command)
+    public async Task<ActionResult<long>> Create(CreateTodoItemCommand command)
     {
         return await Mediator.Send(command);
     }
@@ -29,7 +30,7 @@ public class TodoItemsController : ApiControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesDefaultResponseType]
-    public async Task<IActionResult> Update(int id, UpdateTodoItemCommand command)
+    public async Task<IActionResult> Update(long id, UpdateTodoItemCommand command)
     {
         if (id != command.Id)
         {
@@ -45,7 +46,7 @@ public class TodoItemsController : ApiControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesDefaultResponseType]
-    public async Task<IActionResult> UpdateItemDetails(int id, UpdateTodoItemDetailCommand command)
+    public async Task<IActionResult> UpdateItemDetails(long id, UpdateTodoItemDetailCommand command)
     {
         if (id != command.Id)
         {
@@ -60,7 +61,7 @@ public class TodoItemsController : ApiControllerBase
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesDefaultResponseType]
-    public async Task<IActionResult> Delete(int id)
+    public async Task<IActionResult> Delete(long id)
     {
         await Mediator.Send(new DeleteTodoItemCommand(id));
 
