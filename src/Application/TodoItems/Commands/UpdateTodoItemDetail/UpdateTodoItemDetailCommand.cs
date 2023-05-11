@@ -8,6 +8,7 @@ namespace CleanArchitecture.Application.TodoItems.Commands.UpdateTodoItemDetail;
 
 public record UpdateTodoItemDetailCommand : IRequest
 {
+    // id is not autogen by ef core? ids necessary to get specific entity on update
     public int Id { get; init; }
 
     public int ListId { get; init; }

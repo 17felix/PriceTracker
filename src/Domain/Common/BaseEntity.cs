@@ -2,10 +2,13 @@
 
 namespace CleanArchitecture.Domain.Common;
 
-public abstract class BaseEntity
+public abstract class BaseEntity : IIdentifiable<int>//, IAuditable, ISoftDeletable
 {
     public int Id { get; set; }
-
+    /*public DateTimeOffset Created { get; set; }
+    public DateTimeOffset Modified { get; set; }
+    public bool IsDeleted { get; set; }
+    */
     private readonly List<BaseEvent> _domainEvents = new();
 
     [NotMapped]
