@@ -12,6 +12,7 @@
         <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.1" />
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.3" />
+        <PackageReference Include="Microsoft.ServiceFabric.Actors" Version="6.1.1653" />
     </ItemGroup>
 
     <ItemGroup>
